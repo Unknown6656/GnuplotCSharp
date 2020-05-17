@@ -9,7 +9,11 @@ namespace AwokeKnowing.GnuplotCSharp
 {
     class GnuPlot
     {
-        public static string PathToGnuplot = @"C:\Program Files (x86)\gnuplot\bin";
+#if _WINDOWS
+        public static string PathToGnuplot = @"C:/Program Files (x86)/gnuplot/bin/gnuplut.exe";
+#else
+        public static string PathToGnuplot = @"/usr/bin/gnuplot";
+#endif
         private static Process ExtPro;
         private static StreamWriter GnupStWr;
         private static List<StoredPlot> PlotBuffer;
@@ -20,10 +24,8 @@ namespace AwokeKnowing.GnuplotCSharp
 
         static GnuPlot()
         {
-            if (PathToGnuplot[PathToGnuplot.Length - 1].ToString() != @"\")
-                PathToGnuplot += @"\";
             ExtPro = new Process();
-            ExtPro.StartInfo.FileName = PathToGnuplot + "gnuplot.exe";
+            ExtPro.StartInfo.FileName = PathToGnuplot;
             ExtPro.StartInfo.UseShellExecute = false;
             ExtPro.StartInfo.RedirectStandardInput = true;
             ExtPro.Start();
@@ -311,7 +313,7 @@ namespace AwokeKnowing.GnuplotCSharp
                         GnupStWr.WriteLine("e");
                         GnupStWr.WriteLine("e");
                         break;
-                    
+
                 }
             }
             GnupStWr.Flush();
