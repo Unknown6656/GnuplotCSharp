@@ -10,7 +10,7 @@ namespace AwokeKnowing.GnuplotCSharp
     class GnuPlot
     {
 #if _WINDOWS
-        public static string PathToGnuplot = @"C:/Program Files (x86)/gnuplot/bin/gnuplut.exe";
+        public static string PathToGnuplot = @"./lib/Gnuplot-Windows/bin/gnuplot.exe";
 #else
         public static string PathToGnuplot = @"/usr/bin/gnuplot";
 #endif
